@@ -28,7 +28,7 @@
     </head>
     <body>
         <?php 
-            uneeqFreeq();
+            uneeqFreeqSansCommon();
         ?>
    
     </body>
