@@ -9,50 +9,30 @@ require('./lib/DatabaseAdapter.php');
 // A Variable for your site name
 $mySiteName = 'Assignment One'; 
 
-// function to get list of courses
-function getListOfCourses(){
-	
-	$courses = array();
-	$db = new DatabaseAdapter();
-	
-	$sqlString = "Select id, title from courses";
-	
-	$results = $db->doQuery($sqlString);
-	
-	while ( ($row = $results->fetch_assoc() ) ) {
-		$courses[] = $row;
-	}
-	
-	return $courses;
-	
-}
+// function that'll read and print from a file (DEBUGGING)
+// function readz() {
+//     $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+//     $words = fread($daFile,filesize("data/words.txt"));
+//     // forces all text to lower case
+//     echo (strtolower($words));
+//     fclose($daFile);
+// }
 
-// function to get list of course notes
-function getListOfNotes( $courseid ){
-	$notes = array();
-	$db = new DatabaseAdapter();
-	
-	$sqlString = "Select title, content from notes where courseid=$courseid";
-	
-	$results = $db->doQuery($sqlString);
-	
-	while ( ($row = $results->fetch_assoc() ) ) {
-		$notes[] = $row;
-	}
-	
-	return $notes;
-	
-	
-}
+// function that should generate	a list of unique words (ignoring case) and its frequency	
+function uneeqFreeq() {
+    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+    $words = fread($daFile,filesize("data/words.txt"));
+     // stores all text to lower case
+    $tinyWords = strtolower($words);
+    $numWords = str_word_count($tinyWords, 1);
+    $frequency = array_count_values($numWords);
 
-
-
-
-
-
-
-
-
+    echo '<pre>';
+    print_r($frequency);
+    echo '</pre>';
+    
+    fclose($daFile);
+}// uneeqFreeq
 
 
 ?>
