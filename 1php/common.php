@@ -58,5 +58,23 @@ $commonWords = array('the', 'it','his','her','a','be','i','in','not','there','is
 return preg_replace('/\b('.implode('|',$commonWords).')\b/','',$input);
 }// removeCommonWords
 
+// $result = array();
+
+// function sansCommon() {
+// $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+// $words = fread($daFile,filesize("data/words.txt"));
+//     // stores all text to lower case
+// $tinyWords = strtolower($words);
+// $rem = removeCommonWords($tinyWords);
+// $numWords = str_word_count($rem, 1);
+// $frequency = array_count_values($numWords);
+
+// // $result = array();
+// $result = $frequency;
+
+// return $result;
+// fclose($daFile);
+// }// uneeqFreeq
+
 
 ?>
