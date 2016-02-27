@@ -1,12 +1,3 @@
-<?php
-
-	require('common.php');
-    
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    echo fread($daFile,filesize("data/words.txt"));
-    fclose($daFile);
-
-?>
 
 <!doctype html>
 <html class="no-js" lang="">
@@ -32,7 +23,9 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
-        
+        <?php 
+            uneeqFreeq();
+        ?>
    
     </body>
 </html>
