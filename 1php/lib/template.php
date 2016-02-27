@@ -14,8 +14,11 @@ function generateHtmlTable( $tableData ){
 			
 			// second loop for arrays contained inside first array
 			foreach ($row as $key2 => $rowdata) {
+				
 				echo "<td>";
+				
 				echo $rowdata;
+				
 				echo "</td>";
 			}
 
