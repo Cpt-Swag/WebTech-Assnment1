@@ -1,10 +1,6 @@
 <?php
 
 	require('common.php');
-    
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    echo fread($daFile,filesize("data/words.txt"));
-    fclose($daFile);
 
 ?>
 
@@ -31,14 +27,15 @@
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
+    
     <body>
         
-      <form > 
-			<textarea rows="4" cols="50"></textarea>
-			<br>
-			<input type="submit" value="Analyze">
-		</form>
-
-        <script src="js/main.js"></script>
+     <form > 
+		<textarea Name="myText" rows="4" cols="50"></textarea>
+		<br>
+		<input type="submit" value="Analyze" onclick="extractText(this.form)";/>
+	</form> 
+    
+    <script src="js/main.js"></script>
     </body>
 </html>

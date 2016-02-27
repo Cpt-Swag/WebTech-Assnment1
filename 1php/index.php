@@ -2,9 +2,7 @@
 
 	require('common.php');
     
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    echo fread($daFile,filesize("data/words.txt"));
-    fclose($daFile);
+     readz();
 
 ?>
 

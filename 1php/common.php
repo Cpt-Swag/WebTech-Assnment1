@@ -9,50 +9,13 @@ require('./lib/DatabaseAdapter.php');
 // A Variable for your site name
 $mySiteName = 'Assignment One'; 
 
-// function to get list of courses
-function getListOfCourses(){
-	
-	$courses = array();
-	$db = new DatabaseAdapter();
-	
-	$sqlString = "Select id, title from courses";
-	
-	$results = $db->doQuery($sqlString);
-	
-	while ( ($row = $results->fetch_assoc() ) ) {
-		$courses[] = $row;
-	}
-	
-	return $courses;
-	
+
+function readz() {
+    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+    $words = fread($daFile,filesize("data/words.txt"));
+    echo (strtolower($words));
+    fclose($daFile);
 }
-
-// function to get list of course notes
-function getListOfNotes( $courseid ){
-	$notes = array();
-	$db = new DatabaseAdapter();
-	
-	$sqlString = "Select title, content from notes where courseid=$courseid";
-	
-	$results = $db->doQuery($sqlString);
-	
-	while ( ($row = $results->fetch_assoc() ) ) {
-		$notes[] = $row;
-	}
-	
-	return $notes;
-	
-	
-}
-
-
-
-
-
-
-
-
-
 
 
 ?>

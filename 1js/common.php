@@ -10,47 +10,23 @@ require('./lib/DatabaseAdapter.php');
 $mySiteName = 'Assignment One'; 
 
 // function to get list of courses
-function getListOfCourses(){
-	
-	$courses = array();
-	$db = new DatabaseAdapter();
-	
-	$sqlString = "Select id, title from courses";
-	
-	$results = $db->doQuery($sqlString);
-	
-	while ( ($row = $results->fetch_assoc() ) ) {
-		$courses[] = $row;
-	}
-	
-	return $courses;
-	
-}
 
-// function to get list of course notes
-function getListOfNotes( $courseid ){
-	$notes = array();
-	$db = new DatabaseAdapter();
+// function getListOfCourses(){
 	
-	$sqlString = "Select title, content from notes where courseid=$courseid";
+// 	$courses = array();
+// 	$db = new DatabaseAdapter();
 	
-	$results = $db->doQuery($sqlString);
+// 	$sqlString = "Select id, title from courses";
 	
-	while ( ($row = $results->fetch_assoc() ) ) {
-		$notes[] = $row;
-	}
+// 	$results = $db->doQuery($sqlString);
 	
-	return $notes;
+// 	while ( ($row = $results->fetch_assoc() ) ) {
+// 		$courses[] = $row;
+// 	}
 	
+// 	return $courses;
 	
-}
-
-
-
-
-
-
-
+// }
 
 
 
