@@ -33,9 +33,12 @@
     </head>
     <body>
         
-        <?php 
-        print($daFile);
-        ?>
-   
+      <form > 
+			<textarea rows="4" cols="50"></textarea>
+			<br>
+			<input type="submit" value="Analyze">
+		</form>
+
+        <script src="js/main.js"></script>
     </body>
 </html>
