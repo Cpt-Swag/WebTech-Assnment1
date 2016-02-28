@@ -1,9 +1,12 @@
-<?php
 
+<?php
 	require('common.php');
+<<<<<<< HEAD
     
      readz();
 
+=======
+>>>>>>> PHP
 ?>
 
 <!doctype html>
@@ -31,7 +34,11 @@
     </head>
     <body>
         <?php 
+<<<<<<< HEAD
             uneeqFreeq();
+=======
+            uneeqFreeqSansCommon();
+>>>>>>> PHP
         ?>
    
     </body>

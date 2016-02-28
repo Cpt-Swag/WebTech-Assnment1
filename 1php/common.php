@@ -19,12 +19,39 @@ $mySiteName = 'Assignment One';
 // }
 
 // function that should generate	a list of unique words (ignoring case) and its frequency	
+<<<<<<< HEAD
 function uneeqFreeq() {
+=======
+// function uneeqFreeq() {
+//     $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+//     $words = fread($daFile,filesize("data/words.txt"));
+//      // stores all text to lower case
+//     $tinyWords = strtolower($words);
+//     $numWords = str_word_count($tinyWords, 1);
+//     $frequency = array_count_values($numWords);
+
+//     echo '<pre>';
+//     print_r($frequency);
+//     echo '</pre>';
+    
+//     fclose($daFile);
+// }// uneeqFreeq
+
+
+// function that should generate a list of unique words (ignoring case)
+//  displays its frequency and ignores a list of words	
+function uneeqFreeqSansCommon() {
+>>>>>>> PHP
     $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
     $words = fread($daFile,filesize("data/words.txt"));
      // stores all text to lower case
     $tinyWords = strtolower($words);
+<<<<<<< HEAD
     $numWords = str_word_count($tinyWords, 1);
+=======
+    $rem = removeCommonWords($tinyWords);
+    $numWords = str_word_count($rem, 1);
+>>>>>>> PHP
     $frequency = array_count_values($numWords);
 
     echo '<pre>';
@@ -33,6 +60,32 @@ function uneeqFreeq() {
     
     fclose($daFile);
 }// uneeqFreeq
+<<<<<<< HEAD
+=======
+
+function removeCommonWords($input){
+$commonWords = array('the', 'it','his','her','a','be','i','in','not','there','is','are','was','were','this','that','and','has','had','to','you','me','at','so');
+return preg_replace('/\b('.implode('|',$commonWords).')\b/','',$input);
+}// removeCommonWords
+
+// $result = array();
+
+// function sansCommon() {
+// $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+// $words = fread($daFile,filesize("data/words.txt"));
+//     // stores all text to lower case
+// $tinyWords = strtolower($words);
+// $rem = removeCommonWords($tinyWords);
+// $numWords = str_word_count($rem, 1);
+// $frequency = array_count_values($numWords);
+
+// // $result = array();
+// $result = $frequency;
+
+// return $result;
+// fclose($daFile);
+// }// uneeqFreeq
+>>>>>>> PHP
 
 
 ?>
