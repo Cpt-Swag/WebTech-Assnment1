@@ -6,10 +6,12 @@ development	of	student	competences	in	skills	needed	for	common	web	system	tasks	
 today.	The	assignment	is	ordered	by	difficulty	and	should	be	adequate	to	evaluate	students’
 ability	to	put	the	concepts	and	technologies	covered	to	use	to	solve	the	problems	described	
 in	the	assignment.
+
 The	assignment	is	to	be	conducted	in	groups	between	2	and	5	persons.	The	grade	rubric	is	
 provided	as	an	indication	of	how	much	work	is	required	for	the	various	tasks.	Even	if	tasks	are	
 assigned	to	different	group	members,	it	is	important	for	all	members	to	be familiar	with	how	
 to	accomplish	all	aspects	of	the	assignment.
+
 Task	A
 The	analysis	of	text	is	an	important	consideration	for	businesses,	especially	when	considering	
 how	 to	 analyze and	 making	 informed	 decisions	 from	 customer	 feedback,	 comments	 or	
