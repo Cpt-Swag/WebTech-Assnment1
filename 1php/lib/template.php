@@ -8,14 +8,16 @@ function makeList($listStuff)
     }
 }
 
-// A user defined function to take a multidimensional array and put its data into an HTML table
+# A user defined function to take a multidimensional array and put its data into an HTML table
 function makeTabel($tableStuff)
 {       
         echo '<table class="table table-bordered" style="width:50%">';
+        // Row for headers
         echo "<tr>";
             echo "<th>" . "WORD" . "</th>";
             echo "<th>" . "SCORE" . "</th>";
         echo "</tr>";
+        //Actually data
         foreach ($tableStuff as $word => $value) {
             echo "<tr>";
                 echo "<td>" . $word . "</td>";

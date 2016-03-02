@@ -29,6 +29,7 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
+        <h1>Assignment ONE</h1>
         <?php 
   
             // Words and thier frequency of appearance 
