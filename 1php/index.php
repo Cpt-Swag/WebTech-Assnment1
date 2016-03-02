@@ -1,12 +1,8 @@
 
 <?php
 	require('common.php');
-<<<<<<< HEAD
     
-     readz();
-
-=======
->>>>>>> PHP
+     // readz();
 ?>
 
 <!doctype html>
@@ -34,11 +30,12 @@
     </head>
     <body>
         <?php 
-<<<<<<< HEAD
-            uneeqFreeq();
-=======
-            uneeqFreeqSansCommon();
->>>>>>> PHP
+  
+            // Words and thier frequency of appearance 
+            // makeList(uneeqFreeqSansCommon());
+            
+           // table of said frequencies
+           makeTabel(uneeqForm());
         ?>
    
     </body>
