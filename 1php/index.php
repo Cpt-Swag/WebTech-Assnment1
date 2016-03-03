@@ -41,6 +41,9 @@
 //            calculate the median of the words
     //    makeTabel(uneeqFreeqSansCommon());
             // deMedian($list);
+            
+            db_setup();
+            
         ?>
    
     </body>

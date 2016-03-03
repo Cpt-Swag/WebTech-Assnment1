@@ -40,6 +40,7 @@ class DatabaseAdapter {
 			exit;
 		}
 		
+		
 	}
 
 		
@@ -61,6 +62,7 @@ class DatabaseAdapter {
 		    echo "Query: " . $sqlString . "<br/>";
 		    echo "Error No.: " . $this->connection->errno . "<br/>";
 		    echo "Error: " . $this->connection->error . "<br/>";
+			
 			
 		} else {
 			return $results;
