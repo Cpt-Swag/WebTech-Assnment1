@@ -13,27 +13,24 @@ $mySiteName = 'Assignment One';
 function readz() {
     $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
     $words = fread($daFile,filesize("data/words.txt"));
-    // forces all text to lower case
-    echo (strtolower($words));
+    
+    return $words;
     fclose($daFile);
 }
 
-# function that should generatea list of unique words (ignoring case) and its frequency
+# function that should generatea list of unique words (ignoring case) 
+# and displays the words frequency
 function uneeqFreeq() 
    {
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    $words = fread($daFile,filesize("data/words.txt"));
-     // stores all text to lower case
-    $tinyWords = strtolower($words);
+    // $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+    // $words = fread($daFile,filesize("data/words.txt"));
+    // readz();
+    // stores all text to lower case
+    $tinyWords = strtolower(readz());
     $numWords = str_word_count($tinyWords, 1);
     $frequency = array_count_values($numWords);
 
-    echo '<pre>';
-    print_r($frequency);
-    echo '</pre>';
-    
-    fclose($daFile);
-
+   return $frequency;;
 }// uneeqFreeq
 
 
@@ -41,18 +38,14 @@ function uneeqFreeq()
 #  displays its frequency and ignores a list of words	
 function uneeqFreeqSansCommon()
  {
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    $words = fread($daFile,filesize("data/words.txt"));
-     // stores all text to lower case
-    $tinyWords = strtolower($words);
+     $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+     $words = fread($daFile,filesize("data/words.txt"));
+     $tinyWords = strtolower($words); // stores all text to lower case
+     $rem = removeCommonWords($tinyWords); //take out unwanted words
+     $numWords = str_word_count($rem, 1);
+     $frequency = array_count_values($numWords);
 
-    $numWords = str_word_count($tinyWords, 1);
-
-    $rem = removeCommonWords($tinyWords);
-    $numWords = str_word_count($rem, 1);
-    $frequency = array_count_values($numWords);
-    
-    return $frequency;
+     return $frequency;
     
     fclose($daFile);
 
@@ -68,21 +61,23 @@ function removeCommonWords($input)
 
 }// removeCommonWords
 
-function uneeqForm()
-{   
-    $mem = array();
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    $words = fread($daFile,filesize("data/words.txt"));
-     // stores all text to lower case
-    $tinyWords = strtolower($words);
+//function uneeqForm()
+//{
+//    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+//    $words = fread($daFile,filesize("data/words.txt"));
+//     // stores all text to lower case
+//    $tinyWords = strtolower($words);
+//    $rem = removeCommonWords($tinyWords);
+//    $numWords = str_word_count($rem, 1);
+//    $frequency = array_count_values($numWords);
+//
+//    return $frequency;
+//}
 
-    // $numWords = str_word_count($tinyWords, 1);
-
-    $rem = removeCommonWords($tinyWords);
-    $numWords = str_word_count($rem, 1);
-    $frequency = array_count_values($numWords);
-
-    return $frequency;
+function deMedian($array)
+{
+    uneeqFreeqSansCommon();
 }
+
 
 ?>

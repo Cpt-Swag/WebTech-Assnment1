@@ -2,7 +2,7 @@
 <?php
 	require('common.php');
     
-     // readz();
+    //   readz();
 ?>
 
 <!doctype html>
@@ -31,12 +31,16 @@
     <body>
         <h1>Assignment ONE</h1>
         <?php 
-  
-            // Words and thier frequency of appearance 
-            // makeList(uneeqFreeqSansCommon());
+            // $wordList = uneeqFreeqSansCommon();
+            # Words and thier frequency of appearance
+            makeList(uneeqFreeq());
             
-           // table of said frequencies
-           makeTabel(uneeqForm());
+           # table of said frequencies
+        //   makeTabel(uneeqFreeqSansCommon());
+
+//            calculate the median of the words
+    //    makeTabel(uneeqFreeqSansCommon());
+            // deMedian($list);
         ?>
    
     </body>
