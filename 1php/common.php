@@ -18,17 +18,13 @@ function readz() {
     fclose($daFile);
 }
 
+
 # function that should generatea list of unique words (ignoring case) 
 # and displays the words frequency
-function uneeqFreeq() 
-   {
-    // $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-    // $words = fread($daFile,filesize("data/words.txt"));
-    // readz();
-    // stores all text to lower case
-    $tinyWords = strtolower(readz());
-    $numWords = str_word_count($tinyWords, 1);
-    $frequency = array_count_values($numWords);
+function uneeq_freeq() {
+    // $tiny_words = strtolower(readz());
+    $num_words = str_word_count(make_small(), 1);
+    $frequency = array_count_values($num_words);
 
    return $frequency;;
 }// uneeqFreeq
@@ -36,30 +32,30 @@ function uneeqFreeq()
 
 # function that should generate a list of unique words (ignoring case)
 #  displays its frequency and ignores a list of words	
-function uneeqFreeqSansCommon()
- {
-     $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-     $words = fread($daFile,filesize("data/words.txt"));
-     $tinyWords = strtolower($words); // stores all text to lower case
-     $rem = removeCommonWords($tinyWords); //take out unwanted words
-     $numWords = str_word_count($rem, 1);
-     $frequency = array_count_values($numWords);
+function uneeq_freeq_sans_common() {
+    //  $tiny_words = strtolower(readz()); // stores all text to lower case
+     $removed = remove_common_word(make_small()); //take out unwanted words
+     $num_words = str_word_count($removed, 1);
+     $frequency = array_count_values($num_words);
 
      return $frequency;
-    
-    fclose($daFile);
 
 }// uneeqFreeq
 
 
-function removeCommonWords($input)
-{
-    $commonWords = array('the', 'it','his','her','a','be','i','in','not','there',
+function remove_common_word($input) {
+    $common_words = array('the', 'it','his','her','a','be','i','in','not','there',
                             'is','are','was','were','this','that','and','has',
                             'had','to','you','me','at','so');
-    return preg_replace('/\b('.implode('|',$commonWords).')\b/','',$input);
-
+                            
+    return preg_replace('/\b('.implode('|',$common_words).')\b/','',$input);
 }// removeCommonWords
+
+function make_small() {
+    $tiny_words = strtolower(readz());
+    
+    return $tiny_words;
+}
 
 //function uneeqForm()
 //{
@@ -74,10 +70,18 @@ function removeCommonWords($input)
 //    return $frequency;
 //}
 
-function deMedian($array)
-{
-    uneeqFreeqSansCommon();
+function fnd_median($array) {
+    uneeq_freeq_sans_common();
 }
 
+// read words store db
+// read freeq srore db
+// sql select statement to find words
+// sql if return null
+// add word nd free
+// else select statement for freeq
+// e.g seleect freequency where word is word
+// add freeqs
+// then update table
 
 ?>

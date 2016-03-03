@@ -33,10 +33,10 @@
         <?php 
             // $wordList = uneeqFreeqSansCommon();
             # Words and thier frequency of appearance
-            makeList(uneeqFreeq());
+            // make_list(uneeq_freeq());
             
            # table of said frequencies
-        //   makeTabel(uneeqFreeqSansCommon());
+          make_table(uneeq_freeq_sans_common());
 
 //            calculate the median of the words
     //    makeTabel(uneeqFreeqSansCommon());

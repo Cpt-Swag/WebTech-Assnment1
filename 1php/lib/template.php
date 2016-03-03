@@ -1,6 +1,6 @@
 <?php
 
-function makeList($listStuff)
+function make_list($listStuff)
 {
     foreach ($listStuff as $words => $value) {
         echo $words . " appears " . $value . " times";
@@ -9,7 +9,7 @@ function makeList($listStuff)
 }
 
 # A user defined function to take a multidimensional array and put its data into an HTML table
-function makeTabel($tableStuff)
+function make_table($tableStuff)
 {       
         echo '<table class="table table-bordered" style="width:50%">';
         // Row for headers
