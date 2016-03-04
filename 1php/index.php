@@ -30,40 +30,28 @@
     </head>
     <body>
         <h1>Assignment ONE</h1>
+        
         <?php 
-<<<<<<< HEAD
-            // $wordList = uneeqFreeqSansCommon();
-            # Words and thier frequency of appearance
-            // make_list(uneeq_freeq());
-            
-           # table of said frequencies
-          make_table(uneeq_freeq_sans_common());
-
-//            calculate the median of the words
-    //    makeTabel(uneeqFreeqSansCommon());
-            // deMedian($list);
-            
-            db_setup();
-=======
-        // $wordList = uneeqFreeqSansCommon();
+        $wordList = uneeqFreeqSansCommon();
         # Words and thier frequency of appearance
         // make_list(uneeq_freeq());
-        $results = uneeq_freeq_sans_common();
-           # table of said frequencies
-        make_table($results);//unsorted
+        
+        # table of said frequencies
+        echo "<h2> Word List and Frequency";
+        make_table($wordList);
         echo "<br> <br>";
         
-        //calculate the median of the words
-
-        // $sorted = fnd_median($results);
+        #Upload to databse
         // db_setup();
-        uasort($results, 'ascen_sort');
-        make_table($results);
+
+        # calculate the median of the words
+        $da_median = fnd_median($wordList);
+
+        echo "$da_median";
+        
 
 
 
-
->>>>>>> refs/remotes/origin/master
             
         ?>
    

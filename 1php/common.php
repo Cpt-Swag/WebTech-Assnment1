@@ -31,11 +31,7 @@ function uneeq_freeq() {
     $num_words = str_word_count(make_small(), 1);
     $frequency = array_count_values($num_words);
 
-<<<<<<< HEAD
-   return $frequency;;
-=======
    return $frequency;
->>>>>>> refs/remotes/origin/master
 }// uneeqFreeq
 
 
@@ -48,7 +44,6 @@ function uneeq_freeq_sans_common() {
      $frequency = array_count_values($num_words);
 
      return $frequency;
-
 }// uneeqFreeq
 
 
@@ -60,36 +55,33 @@ function remove_common_word($input) {
     return preg_replace('/\b('.implode('|',$common_words).')\b/','',$input);
 }// removeCommonWords
 
+
 function make_small() {
     $tiny_words = strtolower(readz());
-<<<<<<< HEAD
     
     return $tiny_words;
 }
 
-//function uneeqForm()
-//{
-//    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
-//    $words = fread($daFile,filesize("data/words.txt"));
-//     // stores all text to lower case
-//    $tinyWords = strtolower($words);
-//    $rem = removeCommonWords($tinyWords);
-//    $numWords = str_word_count($rem, 1);
-//    $frequency = array_count_values($numWords);
-//
-//    return $frequency;
-//}
 
-function fnd_median($array) {
-    uneeq_freeq_sans_common();
+function fnd_median($score) {
+    $sorted = uasort($score, 'ascen_sort');
+    
+    
+    $entries = count($sorted); //total numbers in array
+    $midvalue = floor(($entries - 1) /2); // find the middle value, or the lowest middle value
+    if ($entries % 2) { // odd number, middle is the median
+        $median = $sorted[$midvalue];
+    } else { // even number, calculate avg of 2 medians
+        $low = $sorted[$midvalue];
+        $high = $sorted[$midvalue+1];
+        $median = (($low+$high)/2);
+    }
+    return $median;
+    
 }
 
-=======
 
-    return $tiny_words;
-}
-
-// Recursive comparison function
+// Recursive sort function (ascending)
 function ascen_sort($a, $b) {
     if ($a == $b) {
         return 0;
@@ -98,14 +90,7 @@ function ascen_sort($a, $b) {
 }
 
 
-function fnd_median() {
-   asort(uneeq_freeq_sans_common());
-   
-//    return $sorted;
-}// fnd_median
 
-
->>>>>>> refs/remotes/origin/master
 // read words store db
 // read freeq srore db
 // sql select statement to find words
@@ -115,10 +100,6 @@ function fnd_median() {
 // e.g seleect freequency where word is word
 // add freeqs
 // then update table
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/master
 function db_setup() {
     // Variables for SQL string, query results, and row of data from table
     $sqlString = '';
@@ -140,11 +121,10 @@ function db_setup() {
         $db_word = $words; 
         $freeq = $value;
         // // Query to database for a word using SQL
-<<<<<<< HEAD
         $sql_select_word = "SELECT * FROM wordfrequency WHERE word = '$db_word'";
-=======
-        $sql_select_word = "SELECT wordfrequency FROM wordfrequency WHERE word = '$db_word'";
->>>>>>> refs/remotes/origin/master
+        $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+        $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
+
         // // Query to database for a frequency using SQ
         //  $sql_select_freeq = "SELECT frequency FROM wordfrequency WHERE word = " . $db_word;
         // $row = $results->fetch_assoc();
@@ -154,7 +134,7 @@ function db_setup() {
             $row = $get_word->fetch_assoc();
             $count = $row["frequency"];
             $count = $count + $freeq;
-            $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+            // $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
             $update_freeq = $db->doQuery($sql_update);
             
             if($update_freeq) {
@@ -162,15 +142,13 @@ function db_setup() {
             }
         }
         else{
-            $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
+            // $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
             $result = $db->doQuery($sql_insert);
         }
       
-<<<<<<< HEAD
          
-=======
+
          #EDIT To RE INSERT IN CODE
->>>>>>> refs/remotes/origin/master
          
         // if ($get_word == null) { // if word does not exist in the table
         //     $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES (" .$db_word . "," . $freeq . "); ";
@@ -186,18 +164,10 @@ function db_setup() {
       
      }// foreach
     
-<<<<<<< HEAD
 
-    // Read all records as associative arrays
-    // Each column will be the key and the data in the table colum will be the value
-    // // e.g.
-    // $row = $results->fetch_assoc();
-    // while ($row) {
-    //     $myBooks[] = $row;
-    //     $row = $results->fetch_assoc();
-=======
->>>>>>> refs/remotes/origin/master
     }// db_setup
+
+
 
 
 
