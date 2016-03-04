@@ -1,5 +1,10 @@
 <?php
 
+// Things to note
+// IMprove coupling
+// Its way too tight right now
+// try using parameters
+
 // to access the functions defined in template file
 require('./lib/template.php');
 
@@ -26,7 +31,11 @@ function uneeq_freeq() {
     $num_words = str_word_count(make_small(), 1);
     $frequency = array_count_values($num_words);
 
+<<<<<<< HEAD
    return $frequency;;
+=======
+   return $frequency;
+>>>>>>> refs/remotes/origin/master
 }// uneeqFreeq
 
 
@@ -53,6 +62,7 @@ function remove_common_word($input) {
 
 function make_small() {
     $tiny_words = strtolower(readz());
+<<<<<<< HEAD
     
     return $tiny_words;
 }
@@ -74,6 +84,28 @@ function fnd_median($array) {
     uneeq_freeq_sans_common();
 }
 
+=======
+
+    return $tiny_words;
+}
+
+// Recursive comparison function
+function ascen_sort($a, $b) {
+    if ($a == $b) {
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+}
+
+
+function fnd_median() {
+   asort(uneeq_freeq_sans_common());
+   
+//    return $sorted;
+}// fnd_median
+
+
+>>>>>>> refs/remotes/origin/master
 // read words store db
 // read freeq srore db
 // sql select statement to find words
@@ -83,7 +115,10 @@ function fnd_median($array) {
 // e.g seleect freequency where word is word
 // add freeqs
 // then update table
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 function db_setup() {
     // Variables for SQL string, query results, and row of data from table
     $sqlString = '';
@@ -105,7 +140,11 @@ function db_setup() {
         $db_word = $words; 
         $freeq = $value;
         // // Query to database for a word using SQL
+<<<<<<< HEAD
         $sql_select_word = "SELECT * FROM wordfrequency WHERE word = '$db_word'";
+=======
+        $sql_select_word = "SELECT wordfrequency FROM wordfrequency WHERE word = '$db_word'";
+>>>>>>> refs/remotes/origin/master
         // // Query to database for a frequency using SQ
         //  $sql_select_freeq = "SELECT frequency FROM wordfrequency WHERE word = " . $db_word;
         // $row = $results->fetch_assoc();
@@ -127,7 +166,11 @@ function db_setup() {
             $result = $db->doQuery($sql_insert);
         }
       
+<<<<<<< HEAD
          
+=======
+         #EDIT To RE INSERT IN CODE
+>>>>>>> refs/remotes/origin/master
          
         // if ($get_word == null) { // if word does not exist in the table
         //     $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES (" .$db_word . "," . $freeq . "); ";
@@ -143,6 +186,7 @@ function db_setup() {
       
      }// foreach
     
+<<<<<<< HEAD
 
     // Read all records as associative arrays
     // Each column will be the key and the data in the table colum will be the value
@@ -151,6 +195,8 @@ function db_setup() {
     // while ($row) {
     //     $myBooks[] = $row;
     //     $row = $results->fetch_assoc();
+=======
+>>>>>>> refs/remotes/origin/master
     }// db_setup
 
 

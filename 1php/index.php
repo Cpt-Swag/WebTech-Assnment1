@@ -31,6 +31,7 @@
     <body>
         <h1>Assignment ONE</h1>
         <?php 
+<<<<<<< HEAD
             // $wordList = uneeqFreeqSansCommon();
             # Words and thier frequency of appearance
             // make_list(uneeq_freeq());
@@ -43,6 +44,26 @@
             // deMedian($list);
             
             db_setup();
+=======
+        // $wordList = uneeqFreeqSansCommon();
+        # Words and thier frequency of appearance
+        // make_list(uneeq_freeq());
+        $results = uneeq_freeq_sans_common();
+           # table of said frequencies
+        make_table($results);//unsorted
+        echo "<br> <br>";
+        
+        //calculate the median of the words
+
+        // $sorted = fnd_median($results);
+        // db_setup();
+        uasort($results, 'ascen_sort');
+        make_table($results);
+
+
+
+
+>>>>>>> refs/remotes/origin/master
             
         ?>
    
