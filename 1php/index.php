@@ -1,12 +1,8 @@
 
 <?php
 	require('common.php');
-<<<<<<< HEAD
     
-     readz();
-
-=======
->>>>>>> PHP
+    //   readz();
 ?>
 
 <!doctype html>
@@ -33,12 +29,27 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
+        <h1>Assignment ONE</h1>
         <?php 
-<<<<<<< HEAD
-            uneeqFreeq();
-=======
-            uneeqFreeqSansCommon();
->>>>>>> PHP
+        // $wordList = uneeqFreeqSansCommon();
+        # Words and thier frequency of appearance
+        // make_list(uneeq_freeq());
+        $results = uneeq_freeq_sans_common();
+           # table of said frequencies
+        make_table($results);//unsorted
+        echo "<br> <br>";
+        
+        //calculate the median of the words
+
+        // $sorted = fnd_median($results);
+        // db_setup();
+        uasort($results, 'ascen_sort');
+        make_table($results);
+
+
+
+
+            
         ?>
    
     </body>
