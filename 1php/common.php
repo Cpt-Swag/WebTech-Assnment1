@@ -66,17 +66,16 @@ function make_small() {
 function fnd_median($score) {
     $sorted = uasort($score, 'ascen_sort');
     
-    
-    $entries = count($sorted); //total numbers in array
-    $midvalue = floor(($entries - 1) /2); // find the middle value, or the lowest middle value
-    if ($entries % 2) { // odd number, middle is the median
-        $median = $sorted[$midvalue];
-    } else { // even number, calculate avg of 2 medians
-        $low = $sorted[$midvalue];
-        $high = $sorted[$midvalue+1];
-        $median = (($low+$high)/2);
-    }
-    return $median;
+    // $entries = count($sorted); //total numbers in array
+    // $midvalue = floor(($entries - 1) /2); // find the middle value, or the lowest middle value
+    // if ($entries % 2) { // odd number, middle is the median
+    //     $median = $sorted[$midvalue];
+    // } else { // even number, calculate avg of 2 medians
+    //     $low = $sorted[$midvalue];
+    //     $high = $sorted[$midvalue+1];
+    //     $median = (($low+$high)/2);
+    // }
+    // return $median;
     
 }
 
