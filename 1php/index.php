@@ -33,36 +33,46 @@
         
         <?php 
         
-        $wordList = uneeq_freeq_sans_common();
+        $word_list = uneeq_freeq_sans_common();
         # Words and thier frequency of appearance
         // make_list(uneeq_freeq());
         
         # table of said frequencies
         echo "<h2> Word List and Frequency</h2>";
-        make_table($wordList);
+        make_table($word_list);
         echo "<br> <br>";
+        
+        // echo "<h2> Word List and Frequency (SORTED)</h2>";
+        // make_table(sort_list());
+        // echo "<br> <br>";
         
         #Upload to databse
         // db_setup();
 
         # calculate the median of the words
-        // $da_median = fnd_median($wordList);
-        echo "The median vaule is... ";
-        // $meddy = calculateMedian($wordList);
-        // print_r($meddy); 
-         echo calculateMedian($wordList);
+        // $da_median = fnd_median($word_list);
+        // echo "The median vaule is... ";
+        // // echo $arra[$keys[$index - 1]]; //returns a value based on index
+        // $median = calc_median();
+        // echo $median;
+
+
         
-        echo "<br> <br>";
-        echo "The mode vaule is... ";   
-        calc_mode($wordList);
-        
-        echo "<br> <br>";
-        echo "The mean vaule is... ";  
-        echo calc_mean($wordList);
-        
-        echo "<br> <br>";
-        echo "The Standard Deviation vaule is... ";  
-        echo calc_stdev($wordList);
+    //    echo "<br> <br>";
+    //    echo "The mode vaule is... ";
+    //    calc_mode($word_list);
+
+    //    echo "<br> <br>";
+    //    echo "The mean vaule is... ";
+    //    echo calc_mean($word_list);
+
+    //    echo "<br> <br>";
+    //    echo "The Standard Deviation vaule is... ";
+    //    echo calc_stdev($word_list);
+
+       echo "Amount of values... " . count($word_list);
+       echo "<br>";
+       make_diff_table(calc_mmmstd());
             
 
 

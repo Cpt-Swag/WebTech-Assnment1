@@ -27,7 +27,6 @@ function readz() {
 # function that should generatea list of unique words (ignoring case) 
 # and displays the words frequency
 function uneeq_freeq() {
-    // $tiny_words = strtolower(readz());
     $num_words = str_word_count(make_small(), 1);
     $frequency = array_count_values($num_words);
 
@@ -38,7 +37,6 @@ function uneeq_freeq() {
 # function that should generate a list of unique words (ignoring case)
 #  displays its frequency and ignores a list of words	
 function uneeq_freeq_sans_common() {
-    //  $tiny_words = strtolower(readz()); // stores all text to lower case
      $removed = remove_common_word(make_small()); //take out unwanted words
      $num_words = str_word_count($removed, 1);
      $frequency = array_count_values($num_words);
@@ -58,88 +56,105 @@ function remove_common_word($input) {
 
 function make_small() {
     $tiny_words = strtolower(readz());
+    
     return $tiny_words;
 }
 
 
-function fnd_median($score) {
+function sort_list() {
+    $score = uneeq_freeq_sans_common();
     uasort($score, 'ascen_sort');
     
+    return $score;
 }
 
 
-function calculateMedian($arr) {
-//Sort the array into descending order 1 - ?
-    // sort($Values, SORT_NUMERIC);
-
-    // //Find out the total amount of elements in the array
-    // $Count = array_count_values($Values);
-
-    // //Check the amount of remainders to calculate odd/even
-    // if($Count % 2 == 0) {
-    //     $half = $Values[$Count / 2];
-    //     echo key($Value) . " with a value of " . $half;
-    // }
-    // $med = ($Values[($Count / 2)] + $Values[($Count / 2) - 1] ) / 2;
-    // echo key($Values). " with a value of " . $med;
-    
-    
-    sort($arr, SORT_NUMERIC);
-    $count = count($arr); //total numbers in array
-    $middleval = floor(($count-1)/2); // find the middle value, or the lowest middle value
-    if($count % 2) { // odd number, middle is the median
-        $median = $arr[$middleval];
-    } else { // even number, calculate avg of 2 medians
-        $low = $arr[$middleval];
-        $high = $arr[$middleval+1];
-        $median = (($low+$high)/2);
+/* since words cannot have an average 
+* if amount of words in list even
+* the two middle words are returned
+*/
+function calc_median() {
+    $list = sort_list();
+    $countz = count($list); //total numbers in array
+    $indexd = array_keys($list); //get the numerical indexes for the associative array
+   
+    if ($countz < 2) {
+        return "Not enough words to calculate median!";
     }
-    return key($arr) . " with a value of " . $median;
-
     
+    $mid = floor(($countz - 1) / 2) - floor(($countz - 1) / 2) + 1;
+    
+    if ($countz % 2 == 0) {// if there is an even number of elements
+        return $indexd[$mid] . " and " . $indexd[$mid-1];
+    } 
+    
+    return $indexd[$mid];
 }
 
 
-function calc_mode($score) {
-    uasort($score, 'ascen_sort');
+function calc_mode() {
+    $score = sort_list();
+    
+    if (count($score) < 2) {
+        return "Not enough words to calculate mode!";
+    }
+    
     $last = end($score);
-    echo key($score) . " with a value of " . $last;
     
+    return key($score);
 }
 
-function calc_mean($score) {
-    // rounds down average incase its a decimal
-    return floor(array_sum($score) / count($score));
+
+function calc_mean() {
+    $score = uneeq_freeq_sans_common();
+    if (count($score) < 2) {
+        return "Not enough words to calculate mean!";
+    }
+    
+    return floor(array_sum($score) / count($score));// rounds down average incase its a decimal
 }
 
-function calc_stdev($score) {
+function calc_stdev() {
+    $score = uneeq_freeq_sans_common();
     return standard_deviation($score);
-    
 }
 
 
-//Standard dev function_exists
+//Standard dev function based off samples
 function standard_deviation(array $a, $sample = false) {
-        $n = count($a);
-        if ($n === 0) {
-            trigger_error("The array has zero elements", E_USER_WARNING);
-            return false;
-        }
-        if ($sample && $n === 1) {
-            trigger_error("The array has only 1 element", E_USER_WARNING);
-            return false;
-        }
-        $mean = array_sum($a) / $n;
-        $carry = 0.0;
-        foreach ($a as $val) {
-            $d = ((double) $val) - $mean;
-            $carry += $d * $d;
-        };
-        if ($sample) {
-           --$n;
-        }
-        return sqrt($carry / $n);
+    $n = count($a);
+    if ($n === 0) {
+        trigger_error("The array has zero elements", E_USER_WARNING);
+        return false;
+    }
+    if ($sample && $n === 1) {
+        trigger_error("The array has only 1 element", E_USER_WARNING);
+        return false;
+    }
+    $mean = array_sum($a) / $n;
+    $carry = 0.0;
+    foreach ($a as $val) {
+        $d = ((double) $val) - $mean;
+        $carry += $d * $d;
+    };
+    if ($sample) {
+        --$n;
+    }
     
+    return sqrt($carry / $n);
+}
+
+function calc_mmmstd(){
+    $median = calc_median();
+    $mode = calc_mode();
+    $mean = calc_mean();
+    $stdev = calc_stdev();
+    //forming the array with the values
+    $mmmstd = array('Median'=>$median,
+                    'Mode'=>$mode,
+                    'Mean'=>$mean,
+                    'Standard Deviation'=>$stdev);
+    return $mmmstd;
 }
 
 
@@ -182,9 +197,11 @@ function db_setup() {
      foreach ($word_data as $words => $value) {
         $db_word = $words; 
         $freeq = $value;
-        // // Query to database for a word using SQL
+        // Query to database for a word using SQL
         $sql_select_word = "SELECT * FROM wordfrequency WHERE word = '$db_word'";
+        // Query to database to update frequency using SQL
         $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+         // Query to database to insert frequency using SQL
         $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
 
         // // Query to database for a frequency using SQ
