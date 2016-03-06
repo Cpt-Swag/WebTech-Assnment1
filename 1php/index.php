@@ -46,10 +46,10 @@
         // db_setup();
 
         # calculate the median of the words
-        $da_median = fnd_median($wordList);
+        // $da_median = fnd_median($wordList);
         echo "The median vaule is... ";
-        echo print_r($da_median);
-        
+        $meddy = calculateMedian($wordList);
+        print_r($meddy);        
 
 
 

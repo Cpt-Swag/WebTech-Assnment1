@@ -16,7 +16,7 @@ $mySiteName = 'Assignment One';
 
 # function that'll read and print from a file (DEBUGGING)
 function readz() {
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+    $daFile = fopen("data/small.txt", "r") or die("Unable to find file!");
     $words = fread($daFile,filesize("data/words.txt"));
     
     return $words;
@@ -64,19 +64,45 @@ function make_small() {
 
 
 function fnd_median($score) {
-    $sorted = uasort($score, 'ascen_sort');
+    uasort($score, 'ascen_sort');
     
-    // $entries = count($sorted); //total numbers in array
-    // $midvalue = floor(($entries - 1) /2); // find the middle value, or the lowest middle value
-    // if ($entries % 2) { // odd number, middle is the median
-    //     $median = $sorted[$midvalue];
-    // } else { // even number, calculate avg of 2 medians
-    //     $low = $sorted[$midvalue];
-    //     $high = $sorted[$midvalue+1];
-    //     $median = (($low+$high)/2);
-    // }
+    $entries = count($score); //total number of values in array
+    $midvalue = floor(($entries - 1) /2); // find the middle value, or the lowest middle value
+    if ($entries % 2) { // odd number, middle is the median
+        $median = $score[$midvalue];
+    } else { // even number, calculate avg of 2 medians
+        $low = $score[$midvalue];
+        $high = $score[$midvalue + 1];
+        $median = (($low + $high)/2);
+    }
     // return $median;
+    // return $entries;// debugging
+    return $median;//debugging
     
+}
+
+
+function calculateMedian($aValues) {
+    $aToCareAbout = array();
+    foreach ($aValues as $mValue) {
+        if ($mValue >= 0) {
+            $aToCareAbout[] = $mValue;
+        }
+    }
+    $iCount = count($aToCareAbout);
+    if ($iCount == 0) return 0;
+
+    // if we're down here it must mean $aToCareAbout
+    // has at least 1 item in the array.
+    $middle_index = floor($iCount / 2);
+    sort($aToCareAbout, SORT_NUMERIC);
+    $median = $aToCareAbout[$middle_index]; // assume an odd # of items
+
+    // Handle the even case by averaging the middle 2 items
+    if ($iCount % 2)
+        $median = ($median + $aToCareAbout[$middle_index - 1]) / 2;
+
+    return $median . " with the word " . key($aToCareAbout);
 }
 
 
