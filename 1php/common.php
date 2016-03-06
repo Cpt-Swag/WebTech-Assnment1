@@ -68,29 +68,80 @@ function fnd_median($score) {
 }
 
 
-function calculateMedian($Values) {
+function calculateMedian($arr) {
 //Sort the array into descending order 1 - ?
-    sort($Values, SORT_NUMERIC);
+    // sort($Values, SORT_NUMERIC);
 
-    //Find out the total amount of elements in the array
-    $Count = count($Values);
+    // //Find out the total amount of elements in the array
+    // $Count = array_count_values($Values);
 
-    //Check the amount of remainders to calculate odd/even
-    if($Count % 2 == 0)
-    {
-        return $Values[$Count / 2];
-    }
+    // //Check the amount of remainders to calculate odd/even
+    // if($Count % 2 == 0) {
+    //     $half = $Values[$Count / 2];
+    //     echo key($Value) . " with a value of " . $half;
+    // }
+    // $med = ($Values[($Count / 2)] + $Values[($Count / 2) - 1] ) / 2;
+    // echo key($Values). " with a value of " . $med;
     
-    return ( ($Values[($Count / 2)] + $Values[($Count / 2) - 1] ) / 2);
+    
+    sort($arr, SORT_NUMERIC);
+    $count = count($arr); //total numbers in array
+    $middleval = floor(($count-1)/2); // find the middle value, or the lowest middle value
+    if($count % 2) { // odd number, middle is the median
+        $median = $arr[$middleval];
+    } else { // even number, calculate avg of 2 medians
+        $low = $arr[$middleval];
+        $high = $arr[$middleval+1];
+        $median = (($low+$high)/2);
+    }
+    return key($arr) . " with a value of " . $median;
+
+    
 }
 
 
 function calc_mode($score) {
     uasort($score, 'ascen_sort');
-    $red = end($score);
-    echo key($score) . " with a value of " . $red;
+    $last = end($score);
+    echo key($score) . " with a value of " . $last;
     
 }
+
+function calc_mean($score) {
+    // rounds down average incase its a decimal
+    return floor(array_sum($score) / count($score));
+}
+
+function calc_stdev($score) {
+    return standard_deviation($score);
+    
+}
+
+
+//Standard dev function_exists
+function standard_deviation(array $a, $sample = false) {
+        $n = count($a);
+        if ($n === 0) {
+            trigger_error("The array has zero elements", E_USER_WARNING);
+            return false;
+        }
+        if ($sample && $n === 1) {
+            trigger_error("The array has only 1 element", E_USER_WARNING);
+            return false;
+        }
+        $mean = array_sum($a) / $n;
+        $carry = 0.0;
+        foreach ($a as $val) {
+            $d = ((double) $val) - $mean;
+            $carry += $d * $d;
+        };
+        if ($sample) {
+           --$n;
+        }
+        return sqrt($carry / $n);
+    
+}
+
 
 // Recursive sort function (ascending)
 function ascen_sort($a, $b) {

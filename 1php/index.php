@@ -50,10 +50,20 @@
         echo "The median vaule is... ";
         // $meddy = calculateMedian($wordList);
         // print_r($meddy); 
+         echo calculateMedian($wordList);
+        
         echo "<br> <br>";
         echo "The mode vaule is... ";   
         calc_mode($wordList);
-
+        
+        echo "<br> <br>";
+        echo "The mean vaule is... ";  
+        echo calc_mean($wordList);
+        
+        echo "<br> <br>";
+        echo "The Standard Deviation vaule is... ";  
+        echo calc_stdev($wordList);
+            
 
 
             
