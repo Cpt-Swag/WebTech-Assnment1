@@ -16,7 +16,7 @@ $mySiteName = 'Assignment One';
 
 # function that'll read and print from a file (DEBUGGING)
 function readz() {
-    $daFile = fopen("data/words.txt", "r") or die("Unable to find file!");
+    $daFile = fopen("data/small.txt", "r") or die("Unable to find file!");
     $words = fread($daFile,filesize("data/words.txt"));
     
     return $words;
@@ -27,7 +27,6 @@ function readz() {
 # function that should generatea list of unique words (ignoring case) 
 # and displays the words frequency
 function uneeq_freeq() {
-    // $tiny_words = strtolower(readz());
     $num_words = str_word_count(make_small(), 1);
     $frequency = array_count_values($num_words);
 
@@ -38,13 +37,11 @@ function uneeq_freeq() {
 # function that should generate a list of unique words (ignoring case)
 #  displays its frequency and ignores a list of words	
 function uneeq_freeq_sans_common() {
-    //  $tiny_words = strtolower(readz()); // stores all text to lower case
      $removed = remove_common_word(make_small()); //take out unwanted words
      $num_words = str_word_count($removed, 1);
      $frequency = array_count_values($num_words);
 
      return $frequency;
-
 }// uneeqFreeq
 
 
@@ -56,13 +53,112 @@ function remove_common_word($input) {
     return preg_replace('/\b('.implode('|',$common_words).')\b/','',$input);
 }// removeCommonWords
 
+
 function make_small() {
     $tiny_words = strtolower(readz());
-
+    
     return $tiny_words;
 }
 
-// Recursive comparison function
+
+function sort_list() {
+    $score = uneeq_freeq_sans_common();
+    uasort($score, 'ascen_sort');
+    
+    return $score;
+}
+
+
+/* since words cannot have an average 
+* if amount of words in list even
+* the two middle words are returned
+*/
+function calc_median() {
+    $list = sort_list();
+    $countz = count($list); //total numbers in array
+    $indexd = array_keys($list); //get the numerical indexes for the associative array
+   
+    if ($countz < 2) {
+        return "Not enough words to calculate median!";
+    }
+    
+    $mid = floor(($countz - 1) / 2) - floor(($countz - 1) / 2) + 1;
+    
+    if ($countz % 2 == 0) {// if there is an even number of elements
+        return $indexd[$mid] . " and " . $indexd[$mid-1];
+    } 
+    
+    return $indexd[$mid];
+}
+
+
+function calc_mode() {
+    $score = sort_list();
+    
+    if (count($score) < 2) {
+        return "Not enough words to calculate mode!";
+    }
+    
+    $last = end($score);
+    
+    return key($score);
+}
+
+
+function calc_mean() {
+    $score = uneeq_freeq_sans_common();
+    if (count($score) < 2) {
+        return "Not enough words to calculate mean!";
+    }
+    
+    return floor(array_sum($score) / count($score));// rounds down average incase its a decimal
+}
+
+function calc_stdev() {
+    $score = uneeq_freeq_sans_common();
+    return standard_deviation($score);
+}
+
+
+//Standard dev function based off samples
+function standard_deviation(array $a, $sample = false) {
+    $n = count($a);
+    if ($n === 0) {
+        trigger_error("The array has zero elements", E_USER_WARNING);
+        return false;
+    }
+    if ($sample && $n === 1) {
+        trigger_error("The array has only 1 element", E_USER_WARNING);
+        return false;
+    }
+    $mean = array_sum($a) / $n;
+    $carry = 0.0;
+    foreach ($a as $val) {
+        $d = ((double) $val) - $mean;
+        $carry += $d * $d;
+    };
+    if ($sample) {
+        --$n;
+    }
+    
+    return sqrt($carry / $n);
+}
+
+function calc_mmmstd(){
+    $median = calc_median();
+    $mode = calc_mode();
+    $mean = calc_mean();
+    $stdev = calc_stdev();
+    //forming the array with the values
+    $mmmstd = array('Median'=>$median,
+                    'Mode'=>$mode,
+                    'Mean'=>$mean,
+                    'Standard Deviation'=>$stdev);
+    return $mmmstd;
+}
+
+
+// Recursive sort function (ascending)
 function ascen_sort($a, $b) {
     if ($a == $b) {
         return 0;
@@ -70,12 +166,6 @@ function ascen_sort($a, $b) {
     return ($a < $b) ? -1 : 1;
 }
 
-
-function fnd_median() {
-   asort(uneeq_freeq_sans_common());
-   
-//    return $sorted;
-}// fnd_median
 
 
 // read words store db
@@ -107,8 +197,13 @@ function db_setup() {
      foreach ($word_data as $words => $value) {
         $db_word = $words; 
         $freeq = $value;
-        // // Query to database for a word using SQL
-        $sql_select_word = "SELECT wordfrequency FROM wordfrequency WHERE word = '$db_word'";
+        // Query to database for a word using SQL
+        $sql_select_word = "SELECT * FROM wordfrequency WHERE word = '$db_word'";
+        // Query to database to update frequency using SQL
+        $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+         // Query to database to insert frequency using SQL
+        $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
+
         // // Query to database for a frequency using SQ
         //  $sql_select_freeq = "SELECT frequency FROM wordfrequency WHERE word = " . $db_word;
         // $row = $results->fetch_assoc();
@@ -118,7 +213,7 @@ function db_setup() {
             $row = $get_word->fetch_assoc();
             $count = $row["frequency"];
             $count = $count + $freeq;
-            $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+            // $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
             $update_freeq = $db->doQuery($sql_update);
             
             if($update_freeq) {
@@ -126,10 +221,12 @@ function db_setup() {
             }
         }
         else{
-            $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
+            // $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
             $result = $db->doQuery($sql_insert);
         }
       
+         
+
          #EDIT To RE INSERT IN CODE
          
         // if ($get_word == null) { // if word does not exist in the table
@@ -146,7 +243,10 @@ function db_setup() {
       
      }// foreach
     
+
     }// db_setup
+
+
 
 
 

@@ -9,12 +9,12 @@ class DatabaseAdapter {
 	
 	// vars for configuaration
 	public $host = "localhost";
-	public $port = "3306"; // CHANGE THIS, CHECK USBWEBSERVER SETTINGS FOR MYSQL
+	public $port = "3307"; // CHANGE THIS, CHECK USBWEBSERVER SETTINGS FOR MYSQL
 	
 	public $username = "root"; 
-	public $password = "root";
+	public $password = "usbw";
 	
-	public $database = "courseware";
+	public $database = "frequencycounter";
 
 
 	// Constructor with default value for $databasename parameter 
@@ -51,8 +51,6 @@ class DatabaseAdapter {
 	
 	
 	public function doQuery( $sqlString ){
-		
-		
 		$results = $this->connection->query($sqlString);
 		
 		if(!$results){

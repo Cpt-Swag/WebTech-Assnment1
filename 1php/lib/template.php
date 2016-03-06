@@ -1,34 +1,45 @@
 <?php
 
-// A user defined function to take a multidimensional array and put its data into an HTML table
-function generateHtmlTable( $tableData ){
+function make_list($listStuff) {
+    foreach ($listStuff as $words => $value) {
+        echo $words . " appears " . $value . " times";
+        echo "<br>";
+    }
+}
 
-	// opening table tag
-	echo '<table class="table table-bordered">';
+# A user defined function to take a multidimensional array and put its data into an HTML table
+function make_table($tableStuff) {       
+        echo '<table class="table table-bordered" style="width:50%">';
+        // Row for headers
+        echo "<tr>";
+            echo "<th>" . "WORD" . "</th>";
+            echo "<th>" . "SCORE" . "</th>";
+        echo "</tr>";
+        //Actually data
+        foreach ($tableStuff as $word => $value) {
+            echo "<tr>";
+                echo "<td>" . $word . "</td>";
+                echo "<td>" .  $value . "</td> ";
+            echo "</tr>";
+        }
+         echo '</table>';
+}
 
-	//first loop to go through our array
-	foreach ($tableData as $key1 => $row) {
-		
-			// open row tags
-			echo "<tr>";
-			
-			// second loop for arrays contained inside first array
-			foreach ($row as $key2 => $rowdata) {
-				
-				echo "<td>";
-				
-				echo $rowdata;
-				
-				echo "</td>";
-			}
-
-			// close row tags
-			echo "</tr>";
-		}
-		
-	//closing table tag
-	echo '</table>';
-
+function make_diff_table($tableStuff) {       
+        echo '<table class="table table-bordered" style="width:50%">';
+        // Row for headers
+        echo "<tr>";
+            echo "<th>" . "FUNCTION" . "</th>";
+            echo "<th>" . "RESULT" . "</th>";
+        echo "</tr>";
+        //Actually data
+        foreach ($tableStuff as $word => $value) {
+            echo "<tr>";
+                echo "<td>" . $word . "</td>";
+                echo "<td>" .  $value . "</td> ";
+            echo "</tr>";
+        }
+         echo '</table>';
 }
 	
 ?>

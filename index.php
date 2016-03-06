@@ -33,8 +33,7 @@
 
             // uneeqFreeq();
             // uneeqFreeqSansCommon();
-            $tablo = uneeqForm();
-            generateHtmlTable($tablo));
+            generateHtmlTable(uneeqFreeqSansCommon());
         ?>
    
     </body>
