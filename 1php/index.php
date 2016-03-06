@@ -48,8 +48,11 @@
         # calculate the median of the words
         // $da_median = fnd_median($wordList);
         echo "The median vaule is... ";
-        $meddy = calculateMedian($wordList);
-        print_r($meddy);        
+        // $meddy = calculateMedian($wordList);
+        // print_r($meddy); 
+        echo "<br> <br>";
+        echo "The mode vaule is... ";   
+        calc_mode($wordList);
 
 
 
