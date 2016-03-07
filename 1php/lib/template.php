@@ -9,7 +9,7 @@ function make_list($listStuff) {
 
 # A user defined function to take a multidimensional array and put its data into an HTML table
 function make_table($tableStuff) {       
-        echo '<table class="table table-bordered" style="width:50%">';
+        echo '<table class="table table-striped table-bordered" style="width:50%">';
         // Row for headers
         echo "<tr>";
             echo "<th>" . "WORD" . "</th>";
@@ -26,7 +26,7 @@ function make_table($tableStuff) {
 }
 
 function make_diff_table($tableStuff) {       
-        echo '<table class="table table-bordered" style="width:50%">';
+        echo '<table class="table table-striped table-bordered" style="width:50%">';
         // Row for headers
         echo "<tr>";
             echo "<th>" . "FUNCTION" . "</th>";

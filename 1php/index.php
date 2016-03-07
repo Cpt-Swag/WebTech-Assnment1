@@ -29,35 +29,28 @@
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
     <body>
-        <h1>Assignment ONE</h1>
+        
+       <div class="jumbotron">
+        <h1><a href="../index.php">INFO 3410 Assignment 1 </a></h1>     
+        </div>
         
         <?php 
         
         $word_list = uneeq_freeq_sans_common();
-        # Words and thier frequency of appearance
-        // make_list(uneeq_freeq());
         
         # table of said frequencies
         echo "<h2> Word List and Frequency</h2>";
         make_table($word_list);
-        echo "<br> <br>";
-        
-        // echo "<h2> Word List and Frequency (SORTED)</h2>";
-        // make_table(sort_list());
-        // echo "<br> <br>";
-        
+        echo "Amount of values... " . count($word_list); 
+        echo "<br> <br>";  
         #Upload to databse
-        // db_setup();
+        db_setup();
 
         # calculate the median of the words
-        // $da_median = fnd_median($word_list);
-        // echo "The median vaule is... ";
-        // // echo $arra[$keys[$index - 1]]; //returns a value based on index
         // $median = calc_median();
         // echo $median;
-
-
         
+        # calculate the mode of the words
     //    echo "<br> <br>";
     //    echo "The mode vaule is... ";
     //    calc_mode($word_list);
@@ -65,19 +58,30 @@
     //    echo "<br> <br>";
     //    echo "The mean vaule is... ";
     //    echo calc_mean($word_list);
-
+    
+        # calculate the mean of the words
     //    echo "<br> <br>";
     //    echo "The Standard Deviation vaule is... ";
     //    echo calc_stdev($word_list);
 
-       echo "Amount of values... " . count($word_list);
+       
        echo "<br>";
        make_diff_table(calc_mmmstd());
+       
             
 
 
             
         ?>
+   
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Creators</h3>
+        </div>
+        <div class="panel-body">
+            Akin Bascombe & Aniesha Scott
+        </div>
+        </div>
    
     </body>
 </html>

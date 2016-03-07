@@ -31,32 +31,18 @@
         <link rel="stylesheet" href="css/main.css">
     </head>
 
-    <body>   
-        
-        <div class="jumbotron">
-        <h1><a href="../index.php">INFO 3410 Assignment 1 </a></h1>     
-        </div>
-        
+    <body>        
+		<h2> INFO 3410 Assignment 1 </h2><br>
         <h4> Enter Paragraph and Press Enter! </h4><br>
     	<form> 
 			<textarea id="myText" rows="4" cols="50" onkeypress="return searchKeyPress(event)"></textarea>
 			<br>
-    		<input class="btn btn-default type="submit" id="btn" value="Analyze" onclick="return extractText(this.form)"/>
+    		<input type="submit" id="btn" value="Analyze" onclick="return extractText(this.form)"/>
 		</form> 
         <br>
         <div id="leftcolumn" name="demo"> </div>
         <div id="rightcolumn" name="demoo"> </div>
         <br>
     <script src="js/main.js"></script>
-    
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Creators</h3>
-        </div>
-        <div class="panel-body">
-            Akin Bascombe & Aniesha Scott
-        </div>
-        </div>
-        
     </body>
 </html>

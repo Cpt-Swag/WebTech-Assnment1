@@ -1,10 +1,5 @@
 <?php
 
-// Things to note
-// IMprove coupling
-// Its way too tight right now
-// try using parameters
-
 // to access the functions defined in template file
 require('./lib/template.php');
 
@@ -197,23 +192,19 @@ function db_setup() {
      foreach ($word_data as $words => $value) {
         $db_word = $words; 
         $freeq = $value;
+        
         // Query to database for a word using SQL
         $sql_select_word = "SELECT * FROM wordfrequency WHERE word = '$db_word'";
-        // Query to database to update frequency using SQL
-        $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+
          // Query to database to insert frequency using SQL
         $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
 
-        // // Query to database for a frequency using SQ
-        //  $sql_select_freeq = "SELECT frequency FROM wordfrequency WHERE word = " . $db_word;
-        // $row = $results->fetch_assoc();
-        
         $get_word = $db->doQuery($sql_select_word);
         if ($get_word){
             $row = $get_word->fetch_assoc();
             $count = $row["frequency"];
             $count = $count + $freeq;
-            // $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
+            $sql_update = "UPDATE wordfrequency SET frequency =  '$count' WHERE word =  '$words'";
             $update_freeq = $db->doQuery($sql_update);
             
             if($update_freeq) {
@@ -221,7 +212,7 @@ function db_setup() {
             }
         }
         else{
-            // $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
+            $sql_insert = "INSERT INTO `wordfrequency` (`word`, `frequency`) VALUES ('$words' , '$freeq'); ";
             $result = $db->doQuery($sql_insert);
         }
       
